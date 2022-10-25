@@ -4,7 +4,7 @@ var btn = document.getElementById('play-pause');
 
 function togglePlayPause() {
     if(video.paused){
-        btn.className = 'pause'
+        btn.className = 'pause';
         video.play();
     }
     else {
@@ -14,4 +14,12 @@ function togglePlayPause() {
 }
 btn.onclick = function() {
     togglePlayPause();
-}
+};
+
+video.addEventListener('timeupdate', function(){
+    var juicePos = video.currentTime / video.duration;
+    juice.style.width = juicePos * 100 + "%";
+    if(video.ended){
+        btn.className = "play";
+    }
+});
